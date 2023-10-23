@@ -1,13 +1,15 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const express = require('express');
 const app = express();
 const port = 3000;
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: '',
+    password: 'Root+123',
     database: 'Informacion'
 });
 
@@ -17,19 +19,22 @@ connection.connect((error) => {
 });
 
 
-// app.get('/', (request, response) => {
+app.get('/', (request, response) => {
+    console.log(response)
+    response.send("hola mundo :d")
+});
 
-//     connection.query(
-//         "SELECT * FROM productos WHERE eliminado = 0 AND stock > 0;", 
-//         (error, data) => {
-//             if (error) {
-//                 console.error(error);
-//                 response.status(500).send("Error retrieving products");
-//             } else {
-//                 response.send(data);
-//             }
+// connection.query(
+//     "SELECT * FROM productos WHERE eliminado = 0 AND stock > 0;", 
+//     (error, data) => {
+//         if (error) {
+//             console.error(error);
+//             response.status(500).send("Error retrieving products");
+//         } else {
+//             response.send(data);
 //         }
-//     );
+//     }
+// )});
 
 //Metodo POST
 app.post('/enviado', (request, response) => {
@@ -46,7 +51,7 @@ app.post('/enviado', (request, response) => {
         }
 
     });
-    connection.end();
+    //connection.end();
 
 });
 

@@ -1,9 +1,9 @@
-CREATE DATABASE Informacion;
+CREATE DATABASE IF NOT EXISTS Informacion;
 
 USE Informacion;
 
 CREATE TABLE DATOS (
-  id 		int NOT NULL auto_increment,
+  id 		int NOT NULL auto_increment primary key,
   DNI 		int NOT NULL,
   full_name	varchar(50) NOT NULL,
   direccion	varchar(250) NULL,

@@ -9,14 +9,14 @@
 <body>
     <div class="container">
         <h1>Participa en el sorteo</h1>
-        <form method="POST" action="/enviado">
+        <form method="POST" action="http://localhost:3000/enviado">
             <div class="form-box">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="full_name" required>
             </div>
             <div class="form-box">
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required>
+                <input type="text" id="direccion" name="direccion" required>
             </div>
             <div class="form-box">
                 <label for="correo">Correo:</label>
@@ -24,15 +24,63 @@
             </div>
             <div class="form-box">
                 <label for="numero">Número:</label>
-                <input type="number" id="numero" name="numero" maxlength="9" required>
+                <input type="number" id="numero" name="telefono" maxlength="9" required>
+            </div>
+            <div class="form-box">
+                <label for="dni">DNI:</label>
+                <input type="number" id="DNI" name="DNI" maxlength="9" required>
             </div>
             <div class="button-box">
-                <button type="submit">Enviar</button>
+                <button class="enviar" type="submit">Enviar</button>
                 <button type="reset">Limpiar</button>
             </div>
         </form>
-        <p class="success-message">Ha finalizado con éxito!</p>
+        <p class="success-message"></p>
     </div>
     <script src="../back-end/appi.js"></script>
+    <script>
+        function validarInput(input) {
+            var reg = /[^0-9]/g;
+            if (reg.test(input.value)) {
+                input.value = input.value.replace(reg, '');
+            }
+        }
+    </script>
+    <script>
+        function validarCorreo() {
+            var correo = document.getElementById('correo').value;
+            if (!correo.endsWith('.com')) {
+                alert('El correo debe terminar en .com');
+                return false;
+            }
+        }
+    </script>
+        <script>
+            $(document).ready(() => {
+            $('.enviar').click(() => {
+            fetch("http://localhost:3000/productos")
+            .then(res => res.json())
+            .then((data) => console.log(data));
+            });
+            });
+            
+            </script>
+    <script>
+        // Función para mostrar el mensaje de éxito
+        function mostrarMensajeDeExito() {
+            $('.success-message').fadeIn();
+        }
+
+        $(document).ready(() => {
+            $('#enviar').on('click', function() {
+                validarCorreo(); // Asegúrate de que se haya validado el correo
+                mostrarMensajeDeExito();
+            });
+        });
+
+        
+
+    </script>
+                        
 </body>
 </html>
