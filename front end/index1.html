@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Participa en el sorteo</h1>
-        <form>
+        <form method="POST" action="/enviado">
             <div class="form-box">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -33,5 +33,6 @@
         </form>
         <p class="success-message">Ha finalizado con éxito!</p>
     </div>
+    <script src="../back-end/appi.js"></script>
 </body>
 </html>
