@@ -7,7 +7,7 @@ const port = 3000;
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: 'MYSQL$q1w2e3r4.',
+    // password: '',
     database: 'Informacion'
 });
 
@@ -33,17 +33,22 @@ connection.connect((error) => {
 
 //Metodo POST
 app.post('/enviado', (request, response) => {
-    const { DNI, full_name, direccion, correo, telefono } = request.body;
-    connection.query('INSERT INTO Datos (DNI, full_name, direccion, correo, telefono) VALUES (?, ?, ?, ?)',
+    const {DNI, full_name, direccion, correo, telefono} = request.body;
+
+    connection.query('INSERT INTO Datos (DNI, full_name, direccion, correo, telefono) VALUES (?, ?, ?, ?, ?)',
     [DNI, full_name, direccion, correo, telefono], (error) => {
+
         if (error) {
             console.error(error);
             response.status(500).send('Error creating DataBase');
         } else {
             response.send('Database created successfully');
         }
+
     });
-  });
+    connection.end();
+
+});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
