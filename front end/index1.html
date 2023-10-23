@@ -26,10 +26,10 @@
                 <label for="numero">Número:</label>
                 <input type="number" id="numero" name="telefono" maxlength="9" required>
             </div>
-            <div class="form-box">
+            <!-- <div class="form-box">
                 <label for="dni">DNI:</label>
-                <input type="number" id="DNI" name="DNI" maxlength="9" required>
-            </div>
+                <input type="number" id="dni" name="DNI" maxlength="9" required>
+            </div>             -->
             <div class="button-box">
                 <button class="enviar" type="submit">Enviar</button>
                 <button type="reset">Limpiar</button>
@@ -38,15 +38,15 @@
         <p class="success-message"></p>
     </div>
     <script src="../back-end/appi.js"></script>
-    <script>
+    <!-- <script>
         function validarInput(input) {
             var reg = /[^0-9]/g;
             if (reg.test(input.value)) {
                 input.value = input.value.replace(reg, '');
             }
         }
-    </script>
-    <script>
+    </script> -->
+    <!-- <script>
         function validarCorreo() {
             var correo = document.getElementById('correo').value;
             if (!correo.endsWith('.com')) {
@@ -54,7 +54,7 @@
                 return false;
             }
         }
-    </script>
+    </script> -->
         <script>
             $(document).ready(() => {
             $('.enviar').click(() => {
@@ -65,7 +65,7 @@
             });
             
             </script>
-    <script>
+    <!-- <script>
         // Función para mostrar el mensaje de éxito
         function mostrarMensajeDeExito() {
             $('.success-message').fadeIn();
@@ -80,7 +80,7 @@
 
         
 
-    </script>
+    </script> -->
                         
 </body>
 </html>

@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -21,7 +22,7 @@ connection.connect((error) => {
 
 app.get('/', (request, response) => {
     console.log(response)
-    response.send("hola mundo :d")
+    response.sendFile(path.join(__dirname, '../front end', 'index1.html'));
 });
 
 // connection.query(
@@ -38,10 +39,21 @@ app.get('/', (request, response) => {
 
 //Metodo POST
 app.post('/enviado', (request, response) => {
-    const {DNI, full_name, direccion, correo, telefono} = request.body;
+    const { full_name, direccion, correo, telefono } = request.body;
+  
+    // Ahora puedes utilizar estas variables para realizar la inserción en la base de datos
+    // Asegúrate de validar y sanitizar los valores antes de insertarlos en la base de datos
+  
+    // Ejemplo de cómo puedes usar los valores
+    // console.log('DNI:', DNI);
+    console.log('Nombre completo:', full_name);
+    console.log('Dirección:', direccion);
+    console.log('Correo:', correo);
+    console.log('Teléfono:', telefono);
+  
 
-    connection.query('INSERT INTO Datos (DNI, full_name, direccion, correo, telefono) VALUES (?, ?, ?, ?, ?)',
-    [DNI, full_name, direccion, correo, telefono], (error) => {
+    connection.query('INSERT INTO Datos ( full_name, direccion, correo, telefono) VALUES (?, ?, ?, ?)',
+    [ full_name, direccion, correo, telefono], (error) => {
 
         if (error) {
             console.error(error);

@@ -3,8 +3,8 @@ CREATE DATABASE IF NOT EXISTS Informacion;
 USE Informacion;
 
 CREATE TABLE DATOS (
-  id 		int NOT NULL auto_increment primary key,
-  DNI 		int NOT NULL,
+  -- id 		int NOT NULL auto_increment primary key,
+  -- DNI 		int NOT NULL primary key,
   full_name	varchar(50) NOT NULL,
   direccion	varchar(250) NULL,
   correo	varchar(150) NULL,
