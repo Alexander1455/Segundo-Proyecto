@@ -9,13 +9,13 @@
 <body>
     <div class="container">
         <h1>Participa en el sorteo</h1>
-        <form method="POST" action="http://localhost:3000/enviado">
+        <form class="form">
             <div class="form-box">
-                <label for="nombre">Nombre:</label>
+                <label for="nombre">Nombres completos:</label>
                 <input type="text" id="nombre" name="full_name" required>
             </div>
             <div class="form-box">
-                <label for="apellido">Apellido:</label>
+                <label for="apellido">Dirección:</label>
                 <input type="text" id="direccion" name="direccion" required>
             </div>
             <div class="form-box">
@@ -37,50 +37,38 @@
         </form>
         <p class="success-message"></p>
     </div>
-    <script src="../back-end/appi.js"></script>
-    <!-- <script>
-        function validarInput(input) {
-            var reg = /[^0-9]/g;
-            if (reg.test(input.value)) {
-                input.value = input.value.replace(reg, '');
-            }
-        }
-    </script> -->
-    <!-- <script>
-        function validarCorreo() {
-            var correo = document.getElementById('correo').value;
-            if (!correo.endsWith('.com')) {
-                alert('El correo debe terminar en .com');
-                return false;
-            }
-        }
-    </script> -->
-        <script>
-            $(document).ready(() => {
-            $('.enviar').click(() => {
-            fetch("http://localhost:3000/productos")
-            .then(res => res.json())
-            .then((data) => console.log(data));
-            });
-            });
-            
-            </script>
-    <!-- <script>
-        // Función para mostrar el mensaje de éxito
-        function mostrarMensajeDeExito() {
-            $('.success-message').fadeIn();
-        }
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
         $(document).ready(() => {
-            $('#enviar').on('click', function() {
-                validarCorreo(); // Asegúrate de que se haya validado el correo
-                mostrarMensajeDeExito();
+            $('.form').submit((evt) => {
+                evt.preventDefault();
+                const params = {
+                    full_name: evt.target.full_name.value,
+                    direccion: evt.target.direccion.value,
+                    correo: evt.target.correo.value,
+                    telefono: evt.target.telefono.value
+                }
+                fetch('/enviado', {
+                    body: JSON.stringify(params),
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Set the content type to JSON
+                    },
+                }).then((res) => {
+                    if(!res.ok) {
+                        throw new Error('ERROR', err)
+                    }
+                    alert('REGISTRADO CORRECTAMENTE')
+                })
+                .catch((err) => {
+                    console.log('ERROR', error)
+                })
             });
-        });
-
-        
-
-    </script> -->
-                        
+        })
+        // const form = document.querySelector('.form');
+        // form.addEventListener('submit', (evt) => {
+            
+        // });
+    </script>            
 </body>
 </html>
